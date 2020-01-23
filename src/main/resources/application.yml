@@ -1,0 +1,47 @@
+# server specific properties
+server:
+  netty:
+    connection-timeout: 3600
+  compression:
+    enabled: true
+    mime-types: "text/html, text/xml, text/plain, text/css, text/javascript, application/javascript, application/json, application/xml"
+  http2:
+    enabled: true
+  port: 8080
+  error:
+    include-exception: true
+    include-stacktrace: always
+    whitelabel:
+      enabled: false
+
+# spring specific properties
+spring:
+  application:
+    name: notification
+  main:
+    lazy-initialization: true
+    web-application-type: reactive
+    banner-mode: off
+  gson:
+    pretty-printing: true
+  jackson:
+    time-zone: UTC
+    locale: en_US
+  r2dbc:
+    url: r2dbc:h2:mem:///default?options=DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;INIT=RUNSCRIPT%20FROM%20'classpath:schema.sql'%5C;RUNSCRIPT%20FROM%20'classpath:data.sql'
+    username: sa
+    pool:
+      initial-size: 5
+      max-size: 10
+      max-idle-time: 2m
+# ADD THERE MAIL CONFIGURATIONS FOR MAIL SENDING
+
+# log specific properties
+logging:
+  level:
+    root: info
+    org:
+      springframework:
+        boot: debug
+        data:
+          r2dbc: debug
